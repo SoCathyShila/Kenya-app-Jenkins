@@ -51,7 +51,7 @@
 3) Jenkins/Maven/Ansible
     - Create a Jenkins VM instance 
     - Name: `Jenkins/Maven/Ansible`
-    - AMI: `Ubuntu 24.04`
+    - AMI: `Amazon Linux 2`
     - Instance type: `t2.medium`
     - Key pair: `Select` or `create a new keypair`
     - Security Group (Edit/Open): `8080, 9100` and `22 to 0.0.0.0/0`
@@ -84,7 +84,7 @@
     - Click `Add additional tags`
       - Tag 1: Name: `Name`, Value: `Dev-Env`
       - Tag 2: Name: `Environment`, Value: `dev`
-    - AMI: `Ubuntu 24.04`
+    - AMI: `Bitnami package for Apache Tomcat`
     - Number: `1`
     - Instance type: `t2.micro`
     - Key pair: `Select a keypair`
@@ -97,7 +97,7 @@
     - Click `Add additional tags`
       - Tag 1: Name: `Name`, Value: `Stage-Env`
       - Tag 2: Name: `Environment`, Value: `stage`
-    - AMI: `Ubuntu 24.04`
+    - AMI: `Bitnami package for Apache Tomcat`
     - Number: `1`
     - Instance type: `t2.micro`
     - Key pair: `Select a keypair`
@@ -110,7 +110,7 @@
     - Click `Add additional tags`
       - Tag 1: Name: `Name`, Value: `Prod-Env`
       - Tag 2: Name: `Environment`, Value: `prod`
-    - AMI: `Ubuntu 24.04`
+    - AMI: `Bitnami package for Apache Tomcat`
     - Number: `1`
     - Instance type: `t2.micro`
     - Key pair: `Select a keypair`
@@ -126,7 +126,7 @@
     - Key pair: `Select a keypair`
     - Security Group (Eit/Open): `9090` and `22 to 0.0.0.0/0`
     - IAM instance profile: Select the `AWS-EC2FullAccess-Role`
-    - User data (Copy the following user data): https://github.com/awanmbandi/realworld-cicd-pipeline-project/blob/prometheus-and-grafana-install/userdatas/install-prometheus.sh 
+    - User data: https://github.com/awanmbandi/realworld-cicd-pipeline-project/blob/prometheus-and-grafana-install/userdatas/install-prometheus.sh
     - Launch Instance
 
 10) Grafana
@@ -136,7 +136,7 @@
     - Instance type: `t2.micro`
     - Key pair: `Select a keypair`
     - Security Group (Eit/Open): `3000` and `22 to 0.0.0.0/0`
-    - User data (Copy the following user data): https://github.com/awanmbandi/realworld-cicd-pipeline-project/blob/prometheus-and-grafana-install/userdatas/install-grafana.sh
+    - User data: https://github.com/awanmbandi/realworld-cicd-pipeline-project/blob/prometheus-and-grafana-install/userdatas/install-grafana.sh
     - Launch Instance
 
 11) EC2 (Splunk)
@@ -202,6 +202,7 @@
 
 ### Configure The "Node Exporter" on the "Dev", "Stage" and "Prod" instances including your "Pipeline Infra"
   - Login/SSH into the "Dev-Env", "Stage-Env" and "Prod-Env" VM instance
+  - User data: https://github.com/awanmbandi/realworld-cicd-pipeline-project/blob/prometheus-and-grafana-install/userdatas/install-node-exporter.sh
   - Perform the following operations on all of them
   - Install git by running: `sudo yum install git -y `
   - Clone repository: `git clone https://github.com/awanmbandi/realworld-cicd-pipeline-project.git`
@@ -218,6 +219,7 @@
 
 ### Configure The "Node Exporter" on the "Jenkins-Maven-Ansible", "Nexus" and "SonarQube" instances 
   - Login/SSH into the `"Jenkins-Maven-Ansible"`, `"Nexus"` and `"SonarQube"` VM instance
+  - User data: https://github.com/awanmbandi/realworld-cicd-pipeline-project/blob/prometheus-and-grafana-install/userdatas/install-node-exporter.sh
   - Perform the following operations on all of them
   - Install git: 
     - Jenkins/Maven/Ansible and Nexus VMs: `sudo yum install git -y`   
